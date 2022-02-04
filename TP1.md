@@ -100,5 +100,7 @@ select distinct staff_id, sum(amount) as total from payment group by staff_id or
 ```
 
 17. Le total dépensé par les 5 plus gros clients
-
+```sql
+select distinct customer_id, sum(amount) as total from payment group by customer_id order by total desc limit 5;
+```
 18. Le montant médian de paiement
