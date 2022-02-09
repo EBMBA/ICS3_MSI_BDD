@@ -116,15 +116,17 @@ FROM film as f ;
 4. Combien y-a-t-il d'exemplaires de chaque film par magasin ?
 (Titre, Description, Magasin, Nombre de copies)
 ```sql
-SELECT 
+select  
+
+	store_id as magasin, 
 
 	( 
 
-		SELECT title as titre  
+		SELECT title as titre 
 
-		FROM film as f 
+		from film as f 
 
-		where inv.film_id = f.film_id 
+		where f.film_id = inv.film_id 
 
 	), 
 
@@ -132,24 +134,33 @@ SELECT
 
 		SELECT description 
 
-		FROM film as f 
+		from film as f 
 
-		where inv.film_id = f.film_id 
+		where f.film_id = inv.film_id 
 
 	), 
 
-	store_id as magasin--, 
+	count(1) as nombre	 
 
-	--count(1) as copies 
+FROM inventory as inv  
 
-FROM inventory as inv; 
+group by store_id, film_id 
 
---group by store_id; 
+order by film_id; 
 ```
 5. Combien d'acteurs ont joué dans chaque film ?
 (Titre, Nombre d’acteurs)
+
+```sql
+
+
+```
 6. Dans quelles catégories a joué chaque acteur ?
 (Nom, Prénom, Catégorie)
+```sql
+
+
+```
 7. Quels films Jon (le vendeur ) a loué en juin 2005 ?
 (Titre)
 8. Y-a-t-il des locations pour un client qui ont été payées par un autre client ?
