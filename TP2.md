@@ -163,8 +163,14 @@ order by film_id;
 ```
 7. Quels films Jon (le vendeur ) a loué en juin 2005 ?
 (Titre)
+```sql
+
+
+```
 8. Y-a-t-il des locations pour un client qui ont été payées par un autre client ?
-9. Pour chaque film, dans quelle(s) catégorie(s) est-il et quels acteurs ont joué dedans ?
+
+
+9.  Pour chaque film, dans quelle(s) catégorie(s) est-il et quels acteurs ont joué dedans ?
 (Titre 1, Catégorie 1, Acteur 1)
 (Titre 1, Catégorie 1, Acteur 2)
 (Titre 1, Catégorie 2, Acteur 1)
