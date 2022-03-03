@@ -1,5 +1,40 @@
 CREATE DATABASE pokemon_db;
 
+CREATE TABLE type (
+    PK_TypeID SERIAL,
+    Nom VARCHAR (255) NOT NULL,
+    CONSTRAINT pk_type PRIMARY KEY (PK_TypeID)
+);
+
+CREATE TABLE espece (
+    PK_EspeceID SERIAL,
+    Nom VARCHAR (255) NOT NULL,
+    FK_EvolutionID INT NULL,
+    FK_Type INT NOT NULL,
+    CONSTRAINT pk_espece PRIMARY KEY (PK_EspeceID),
+    CONSTRAINT fk_evolution FOREIGN KEY (FK_EvolutionID) REFERENCES espece(PK_EspeceID),
+    CONSTRAINT fk_type FOREIGN KEY (FK_Type) REFERENCES type(PK_TypeID)
+);
+
+
+CREATE TABLE attaque (
+    PK_AttaqueID SERIAL,
+    Nom VARCHAR (255) NOT NULL,
+    Puissance INT NOT NULL,
+    Precision INT NOT NULL,
+    NombrePP INT NOT NULL,
+    FK_Type INT NOT NULL,
+    CONSTRAINT pk_attaque PRIMARY KEY (PK_AttaqueID),
+    CONSTRAINT fk_type FOREIGN KEY (FK_Type) REFERENCES type(PK_TypeID)
+);
+
+
+CREATE TABLE dresseur (
+    PK_DresseurID SERIAL,
+    Nom VARCHAR (255) NOT NULL,
+    CONSTRAINT pk_dresseur PRIMARY KEY (PK_DresseurID)
+);
+
 CREATE TABLE pokemon (
     PK_PokemonID SERIAL,
     Nom VARCHAR (255) NOT NULL,
@@ -26,35 +61,4 @@ CREATE TABLE pokemon (
     CONSTRAINT un_position UNIQUE (FK_Dresseur, PositionEquipe)
 );
 
-CREATE TABLE espece (
-    PK_EspeceID SERIAL,
-    Nom VARCHAR (255) NOT NULL,
-    FK_EvolutionID INT NULL,
-    FK_Type INT NOT NULL,
-    CONSTRAINT pk_espece PRIMARY KEY (PK_EspeceID),
-    CONSTRAINT fk_evolution FOREIGN KEY (FK_EvolutionID) REFERENCES espece(PK_EspeceID),
-    CONSTRAINT fk_type FOREIGN KEY (FK_Type) REFERENCES type(PK_TypeID)
-);
 
-CREATE TABLE type (
-    PK_TypeID SERIAL,
-    Nom VARCHAR (255) NOT NULL,
-    CONSTRAINT pk_type PRIMARY KEY (PK_TypeID)
-);
-
-CREATE TABLE attaque (
-    PK_AttaqueID SERIAL,
-    Nom VARCHAR (255) NOT NULL,
-    Puissance INT NOT NULL,
-    Precision INT NOT NULL,
-    NombrePP INT NOT NULL,
-    FK_Type INT NOT NULL,
-    CONSTRAINT pk_attaque PRIMARY KEY (PK_AttaqueID),
-    CONSTRAINT fk_type FOREIGN KEY (FK_Type) REFERENCES type(PK_TypeID)
-);
-
-CREATE TABLE dresseur (
-    PK_DresseurID SERIAL,
-    Nom VARCHAR (255) NOT NULL,
-    CONSTRAINT pk_dresseur PRIMARY KEY (PK_DresseurID)
-);
